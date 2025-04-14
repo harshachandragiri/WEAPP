@@ -1,0 +1,49 @@
+<!-- Full-page layout -->
+<div class="app-wrapper">
+    <!-- Header section -->
+    <div class="top-header" *ngIf="usernameSet">
+      <div class="room-controls">
+        <button (click)="switchRoom()" *ngIf="rooms.length > 1">Switch Room</button>
+        <select [(ngModel)]="selectedRoom" *ngIf="rooms.length > 1">
+          <option *ngFor="let room of rooms" [value]="room">{{ room }}</option>
+        </select>
+      </div>
+      <div class="logout">
+        <button (click)="logout()">Logout</button>
+      </div>
+    </div>
+  
+    <!-- Username input -->
+    <div *ngIf="!usernameSet" class="username-form">
+      <h2>Enter your username:</h2>
+      <input type="text" [(ngModel)]="username" placeholder="Your username" />
+      <button (click)="setUsername(username)">Set Username</button>
+    </div>
+  
+    <!-- Main chat box -->
+    <div *ngIf="usernameSet" class="chat-container">
+      <div class="header">
+        <h2>Welcome to the chat, {{ username }}</h2>
+        <p>Room: {{ room }}</p>
+      </div>
+  
+      <!-- Messages display -->
+      <div class="messages">
+        <div *ngFor="let msg of messages">
+          <strong>{{ msg.user }}:</strong> {{ msg.msg }}
+        </div>
+      </div>
+  
+      <!-- Message input and send button -->
+      <div class="message-input">
+        <input
+          type="text"
+          [(ngModel)]="message"
+          placeholder="Type your message here"
+          (keyup.enter)="sendMessage()"
+        />
+        <button (click)="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+  
