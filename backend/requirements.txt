@@ -1,0 +1,7 @@
+Flask
+Flask-Cors
+Flask-PyMongo
+Flask-Bcrypt
+PyJWT
+Flask-SocketIO
+eventlet
